@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Muli&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+/* I.05. First we add background-color, and background-image to body: (NOTE: We split the screen for two colors)   */
+body {
+    background-color: #eafbff;
+    /* NOTE: CSS gradients let you display smooth transitions between two or more specified colors. */
+    /* EXTRA-NOTE: Linear Gradients (goes down/up/left/right/diagonally) => We have to set the direction, and the the color division 0-100% => If we save this we can see the outcome in the browser! (we'll get that split color look)    */
+    background-image: linear-gradient(
+        to bottom, 
+        #eafbff 0%, 
+        #eafbff 50%, 
+        #5290f9 50%, 
+        #5290f9 100%); 
+    font-family: 'Muli', sans-serif;
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    /* NOTE: We use "overflow" on hidden, because we don't want scroll bars to be shown by default */
+    /* overflow: hidden; */
+    margin: 0;
+}
+
+/* I.06. Styling nav: */
+nav {
+    background-color: #fff;
+    padding: 20px;
+    /* NOTE: The width is just in the none-active class 80px, changes with the active class! */
+    width: 80px;
+    /* NOTE: We want to center everything so we display flex: */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    /* NOTE: Now if we remove the active class it'll shrink down, and we want to add a transition on that (to the width) */
+    transition: width 0.6s linear;
+}
+
+/* I.07. Adding active class to nav: */
+nav.active {
+    /* NOTE: Here we're setting the width to be wider with the active class  */
+    width: 350px;
+
+}
+
+/* I.08. Styling nav ul: */
+nav ul {
+    /* NOTE: We want to display it to the center, so flex */
+    display: flex;
+    /* NOTE: This is just removing styles from the ul */
+    list-style-type: none;
+    /* NOTE: We're removing margin and padding: */
+    padding: 0;
+    margin: 0;
+    /* NOTE: When it isn't active, we want the width to be 0 */
+    width: 0;
+    /* NOTE: We're adding transition for the width too */
+    transition: width 0.6s linear;
+}
+
+/* I.09. Styling the ul, when the nav has active class: */
+nav.active ul {
+    width: 100%;
+}
+
+/* I.10. Styling the list items in the ul: */
+nav ul li {
+    /* NOTE: We want to thave the rotate effect, so we use transform for that => We're changing 0deg with the active class   */
+    transform: rotateY(0deg); 
+    /* NOTE: We don't want to see them, so we set the opacity to 0 */
+    opacity: 0;
+    /* NOTE: We have to add a transition to the transfrom, and to the opacity at the same time */
+    transition: transform 0.6s linear, opacity 0.6s linear;
+}
+
+/* I.11. Styling list items in the ul, when it has the active class: */
+nav.active ul li {
+    /* NOTE: Now we should see the items, so we set the opacity to 1 again */
+    opacity: 1;
+    /* NOTE: And we're also setting the transform (to do a full 360 span)  */
+    transform: rotateY(360deg);
+}
+
+/* I.12. Styling the anchor tags in the list: */
+/* AFTER: In next section we'll style the button, and do the rotation, and js (section II.) */
+nav ul a {
+    /* NOTE: Setting the position to be relative */
+    position: relative;
+    color: #000;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+/* II.01. Styling the icon (button): */
+.icon {
+    background-color: #fff;
+    border: 0;
+    cursor: pointer;
+    padding: 0;
+    /* NOTE: We're positioning this relative, because the lines inside are gonne be positioned absolute */
+    position: relative;
+    height: 30px;
+    width: 30px ;
+}
+
+/* II.02. Getting rid of the outline, when we have focus on the button: */
+.icon:focus {
+    outline: 0;
+}
+
+/* II.03. Styling the line:  */
+.icon .line {
+    background-color: #5290f9;
+    height: 2px;
+    width: 20px;
+    position: absolute;
+    top: 10px;
+    left: 5px ;
+    /* II.07. When it changes, we need to have a transition that we add here: */
+    /* AFTER: We'll move to our javascript (II.08.) */
+    transition: transform 0.6s linear;
+}
+
+/* II.04. Styling line 2: (NOTE: Now we're going to get two separate lines) */
+.icon .line2 {
+    top: auto;
+    bottom: 10px;
+}
+
+/* II.05. We're adding the rotation for the line-1 first, when it is active: */
+nav.active .icon .line1 {
+    transform: rotate(-765deg) translateY(5.5px);
+}
+
+/* II.06. We do the same with line-2: (NOTE: Just the opposite way) */
+nav.active .icon .line2 {
+    transform: rotate(765deg) translateY(-5.5px);
+}
+
+
+
+
+
